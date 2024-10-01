@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define the appender for rolling file logging -->
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Define the log file path -->
+        <file>D://library/logs/application.log</file>
+
+        <!-- Set up the rolling policy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Specify the file name pattern for the rolled logs -->
+            <fileNamePattern>D://library/logs/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Keep logs for 30 days -->
+            <totalSizeCap>2GB</totalSizeCap> <!-- Total log size cap -->
+        </rollingPolicy>
+
+        <!-- Define the encoder to format the log output -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root logger level and attach the appender -->
+    <root level="INFO">
+        <appender-ref ref="ROLLING" />
+    </root>
+
+</configuration>
